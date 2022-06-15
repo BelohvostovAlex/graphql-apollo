@@ -1,0 +1,15 @@
+.weatherWrapper {
+  background-color: rgb(255, 255, 179);
+  color: rgb(84, 84, 84);
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 2px solid rgb(84, 84, 84);
+}
+
+.weatherCityTitle {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 5px;
+}
