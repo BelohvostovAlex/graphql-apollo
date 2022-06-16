@@ -1,4 +1,8 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
+
+import { allFragments } from './gqlFragments';
+
+const { TEMPERATURE_FRAGMENT, WIND_FRAGMENT } = allFragments;
 
 export const GET_WEATHER = gql`
   query getCityByName($name: String!, $config: ConfigInput) {
@@ -6,11 +10,10 @@ export const GET_WEATHER = gql`
       name
       weather {
         temperature {
-          actual,
-          feelsLike
+          ...TemperatureFragment
         }
         wind {
-          speed
+          ...WindFragment
         }
         clouds {
           all
@@ -21,4 +24,6 @@ export const GET_WEATHER = gql`
       }
     }
   }
-`
+  ${TEMPERATURE_FRAGMENT}
+  ${WIND_FRAGMENT}
+`;
