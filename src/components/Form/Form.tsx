@@ -3,26 +3,26 @@ import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { useInput } from '../../hooks/useInput';
 import { GET_WEATHER } from '../../query/weather';
+import { WeatherBlock } from '../WeatherBlock/WeatherBlock';
 
 import './index.css';
-import { WeatherBlock } from '../WeatherBlock/WeatherBlock';
 
 export const Form: React.FC = () => {
   const [city, handleCity] = useInput('');
 
-  const [getData, { data, error, loading }] = useLazyQuery(GET_WEATHER, {
-    variables: {
-      name: city,
-      config: {
-        lang: 'ru',
-        units: 'metric',
-      },
-    },
-  });
+  const [getData, { data, error, loading }] = useLazyQuery(GET_WEATHER);
 
   const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    getData();
+    getData({
+      variables: {
+        name: city,
+        config: {
+          lang: 'ru',
+          units: 'metric',
+        },
+      },
+    });
   };
 
   return (

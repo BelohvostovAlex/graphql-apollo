@@ -5,7 +5,7 @@ import { WeatherBlockProps } from './interfaces';
 import './index.css';
 
 export const WeatherBlock: React.FC<WeatherBlockProps> = ({ data }) => {
-  if (data.getCityByName === null) {
+  if (!data.getCityByName) {
     return null;
   }
   const { name, weather } = data?.getCityByName;
@@ -13,7 +13,7 @@ export const WeatherBlock: React.FC<WeatherBlockProps> = ({ data }) => {
     <div className="weatherWrapper">
       <h2 className="weatherCityTitle">Город: {name}</h2>
       <p>
-        Температура: {weather.temperature.actual}°С, ощущается, как{' '}
+        Температура: {weather.temperature.actual}°С, ощущается, как
         {weather.temperature.feelsLike}°С
       </p>
       <p>
